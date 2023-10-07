@@ -3,14 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-@NgModule({
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { LoadingsComponent } from './models/functions/loading/loadings/loadings.component';
+import { HttpClientModule } from '@angular/common/http';
+@NgModule({ 
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    LoadingsComponent,
   ],
   imports: [
+    HttpClientModule, 
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
