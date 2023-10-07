@@ -39,5 +39,7 @@ export class LoginComponent extends GeneralFunctions {
     this.verClaveTypeText = (this.verClave) ? "text" : "password";
   }
 
-  login() {}
+  login() {
+    
+  }
 }
