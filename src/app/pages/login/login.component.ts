@@ -32,6 +32,7 @@ export class LoginComponent extends GeneralFunctions {
   }
   ngOnInit() {
     //console.log("estamos aqui");
+    this.login()
 
   }
   seleccionarVerClave() {
@@ -40,6 +41,11 @@ export class LoginComponent extends GeneralFunctions {
   }
 
   login() {
-    
+      this.loginService.getUsers(1).subscribe(
+        response => {
+          console.log(response);
+          
+        }
+      )
   }
 }
