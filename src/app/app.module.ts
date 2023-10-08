@@ -17,6 +17,7 @@ import { ClientsDetailsComponent } from './pages/clients/clients-details/clients
 import { AddClientComponent } from './pages/clients/add-client/add-client.component';
 import { AddProductComponent } from './pages/products/add-product/add-product.component';
 import { ProductsDetailsComponent } from './pages/products/products-details/products-details.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ProductsDetailsComponent } from './pages/products/products-details/prod
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule, 
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
