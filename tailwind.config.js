@@ -11,8 +11,8 @@ module.exports = {
       colors: {
         blue_global: '#233775',
         green_global: '#69CCAE',
-        grey_global: '#707070',
-        grey_dark_global: '#A7B9D1',
+        grey_global: '#EEEEEE',
+        grey_dark_global: '#858585',
         green_dark_global: '#69CCAE',                
       },
     },

@@ -32,7 +32,7 @@ export class LoginComponent extends GeneralFunctions {
   }
   ngOnInit() {
     //console.log("estamos aqui");
-    this.login()
+    // this.login()
 
   }
   seleccionarVerClave() {
@@ -41,11 +41,34 @@ export class LoginComponent extends GeneralFunctions {
   }
 
   login() {
-      this.loginService.getUsers(1).subscribe(
-        response => {
-          console.log(response);
-          
+    this.loadingService.show();
+    if (this.isEmpty(this.usuario, this.password)) {
+      this.error_function("Debe completar todos los campos");
+      this.loadingService.hide();
+      return;
+    }
+    const data = {
+      "user": "Wanly",
+      "password": "wanly2023"
+    }
+    const data1 = {
+      "user": this.usuario,
+      "password": this.password
+    }
+
+    this.loginService.login_service(data1).subscribe(
+      response => {
+        this.loadingService.hide();
+        console.log(response);
+        if(response.status_code == 202) {
+          this.succes_function("Credenciales validados");
+          this.router.navigate(['/home'])
+        } else {
+          this.error_function(response.detail)
         }
-      )
+      } , err => {
+        this.error_function("Error de Logeo")
+      }
+    )
   }
 }

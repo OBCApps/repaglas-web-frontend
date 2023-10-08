@@ -1,0 +1,73 @@
+<div class=" m-5 rounded-lg ">
+    <div>
+        <h1 class="text-xl font-semibold  text-[#222222]">Lista de Clientes</h1>
+    </div>
+    <div class="row m-0">
+        <div class="col-3">
+
+        </div>
+    </div>
+    <div class=" pt-5">
+
+        <button routerLink="/home/add-client"
+            class="text-white rounded-lg font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+            AGREGAR
+        </button>
+    </div>
+    
+</div>
+
+
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
+
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    RUC
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Pago
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Telefono
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Clients" (click)="goToDetail(item)" class="bg-white cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+               
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
+                        alt="Jese image">
+                    <div class="pl-3">
+                        <div class="text-base font-semibold">{{item.RazonSocial}}</div>
+                        <div class="font-normal text-gray-500">{{item.Email}} - <b>RUC: </b> {{item.RUC}} </div>
+                    </div>
+                </th>
+                <td class="px-6 py-4">
+                    {{item.RUC}}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> 
+                        {{item.TerminoDePago}}
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a> -->
+                    {{item.Telefono}}                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+

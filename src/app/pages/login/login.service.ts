@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   private SERVER = API_ENDPOINT_SEGURIDAD ;
-  private loginRest = this.SERVER ;
+  private user = this.SERVER + '/users';
  
   constructor(
     private http: HttpClient,
@@ -16,8 +16,11 @@ export class LoginService {
   
 
   getUsers( data : any): Observable<any> {       
-    return this.http.get<any>(this.loginRest + '/users/profile/3');
+    return this.http.get<any>(this.user + '/login/3');
   }
-  
+
+  login_service(data : any): Observable<any> {       
+    return this.http.post<any>(this.user + '/login' , data);
+  }
 
 }

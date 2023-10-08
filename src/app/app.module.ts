@@ -7,11 +7,27 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { LoadingsComponent } from './models/functions/loading/loadings/loadings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './pages/home/home.component';
+import { NavComponent } from './pages/nav/nav.component';
+import { MarketRatesComponent } from './pages/market-rates/market-rates.component';
+import { ClientsComponent } from './pages/clients/clients.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { ClientsDetailsComponent } from './pages/clients/clients-details/clients-details.component';
+import { AddClientComponent } from './pages/clients/add-client/add-client.component';
 @NgModule({ 
   declarations: [
     AppComponent,
     LoginComponent,
     LoadingsComponent,
+    HomeComponent,
+    NavComponent,
+    MarketRatesComponent,
+    ClientsComponent,
+    ProductsComponent,
+    ReportsComponent,
+    ClientsDetailsComponent,
+    AddClientComponent,
   ],
   imports: [
     HttpClientModule, 

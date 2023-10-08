@@ -1,0 +1,75 @@
+<div class="content ">
+    <div class="lg:h-[10vh] sombreado">
+        <nav class="row m-0 md:px-3 lg:h-[8vh]  border-b border-white global-center">
+            <div class="col-md-6 global-center-between pt-2">
+                <div>
+                    <h1 class=" font-semibold mx-2 text-white">
+                        <svg class="h-14 w-14" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <circle cx="7" cy="15" r="4" />
+                            <line x1="7" y1="15" x2="7" y2="15.01" />
+                            <circle cx="19" cy="17" r="2" />
+                            <path d="M10.5 17h6.5" />
+                            <path d="M20 15.2v-4.2a1 1 0 0 0 -1 -1h-6l-2 -5h-6v6.5" />
+                            <path d="M18 5h-1a1 1 0 0 0 -1 1v4" />
+                        </svg>
+                    </h1>
+                </div>
+                <div class="md:hidden">
+                    <div class="global-center text-white cursor-grabbing">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-white md:global-end py-2">
+                <ul class="text-xs lg:text-sm global-center-between md:justify-end ">
+
+                    <li class=" hidden md:block">
+                        <div class="global-center text-white cursor-grabbing">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+</div>
+
+<div class="flex m-0 h-[90vh] ">
+    
+    <div class="hidden md:block md:w-[20vw] sombreado">
+        <ul>
+            <li  *ngFor="let item of options" 
+            class="hover:bg-grey_global cursor-pointer"
+            [ngClass]="{'bg-grey_global' : splitHref === item.splitHref}">
+                <a [routerLink]="item.splitHref">
+                    <div class="row m-0 h-20 ">
+                        <div class="col-4  global-end text-grey_dark_global">
+                            <div  [innerHTML]="sanitizer.bypassSecurityTrustHtml(item.icon)"></div>
+                        </div>
+                        <div class="col-8 global-center-start">
+
+                            <span class="font-semibold text-grey_dark_global "> {{item.name}} </span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="w-[100vw] md:w-[80vw] bg-[#F6F7FB] h-[90vh]">
+        <router-outlet></router-outlet>
+    </div>
+</div>
