@@ -9,6 +9,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ClientsDetailsComponent } from './pages/clients/clients-details/clients-details.component';
 import { AddClientComponent } from './pages/clients/add-client/add-client.component';
+import { ProductsDetailsComponent } from './pages/products/products-details/products-details.component';
+import { AddProductComponent } from './pages/products/add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,15 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,        
+      },
+      {
+        path: 'products-detail/:id',
+        component: ProductsDetailsComponent,            
+      },
+      {
+        path: 'add-product',
+        component: AddProductComponent,   
+         
       },
       {
         path: 'reports',

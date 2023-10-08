@@ -15,6 +15,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ClientsDetailsComponent } from './pages/clients/clients-details/clients-details.component';
 import { AddClientComponent } from './pages/clients/add-client/add-client.component';
+import { AddProductComponent } from './pages/products/add-product/add-product.component';
+import { ProductsDetailsComponent } from './pages/products/products-details/products-details.component';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -28,6 +30,8 @@ import { AddClientComponent } from './pages/clients/add-client/add-client.compon
     ReportsComponent,
     ClientsDetailsComponent,
     AddClientComponent,
+    AddProductComponent,
+    ProductsDetailsComponent,
   ],
   imports: [
     HttpClientModule, 

@@ -1,1 +1,78 @@
-<p>products works!</p>
+<div class=" m-5 rounded-lg ">
+    <div>
+        <h1 class="text-xl font-semibold  text-[#222222]">Mis productos</h1>
+    </div>
+    <div class="row m-0">
+        <div class="col-3">
+
+        </div>
+    </div>
+    <div class=" pt-5">
+
+        <button routerLink="/home/add-product"
+            class="text-white rounded-lg font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+            AGREGAR
+        </button>
+    </div>
+    
+</div>
+
+
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
+
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Imagen
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    SKU
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Descripción
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Marca
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Precio Original
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Products" (click)="goToDetail(item)" class="bg-white cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+               
+                <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    <img class="w-10 h-10 rounded-full border" src="./assets/images/repaglas_1.png"
+                        alt="Jese image">
+                    <!-- <div class="pl-3">
+                        <div class="text-base font-semibold">{{item.SKU}}</div>
+                        <div class="font-normal text-gray-500">{{item.Email}} - <b>RUC: </b> {{item.RUC}} </div>
+                    </div> -->
+                </td>
+                <td class="px-6 py-4">
+                    <div class="text-base font-semibold">{{item.SKU}}</div>
+                </td>
+                <td class="px-6 py-4">
+                    {{item.Descripcion}}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> 
+                        {{item.Marca}}
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a> -->
+                    S/.{{item.PrecioOriginal}}                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
