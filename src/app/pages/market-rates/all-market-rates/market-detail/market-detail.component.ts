@@ -26,11 +26,11 @@ export class MarketDetailComponent extends GeneralFunctions {
   ) {
     super();
     this.register = this.fb.group({
-      solped_cliente: [{ value: '', disabled: true }],
-      ruc: [{ value: '', disabled: true }],
-      vendedor: [{ value: '', disabled: true }],
-      fecha_envio: [{ value: '', disabled: true }],
-      estado: [{ value: '', disabled: true }],
+      solped_cliente: [{ value: '', disabled: false }],
+      ruc: [{ value: '', disabled: false }],
+      vendedor: [{ value: '', disabled: false }],
+      fecha_envio: [{ value: '', disabled: false }],
+      estado: [{ value: '', disabled: false }],
     });
 
    
@@ -107,6 +107,7 @@ export class MarketDetailComponent extends GeneralFunctions {
   }
   updateMarketRates(register: any) {
     this.loadingService.show();
+    this.MarketRates.productos = this.ProductoAgregados
     this.marketRatesService.updateMarketDetail(this.MarketRatesId, register).subscribe(
       data => {
         this.loadingService.hide();
@@ -114,7 +115,7 @@ export class MarketDetailComponent extends GeneralFunctions {
         if (data.status_code == 200) {
           this.succes_function(data.detail.message);
           this.loadMarketRates()
-          this.activateUpdate(false)
+          this.modificarBoolean = false
           /*  this.Client = data.detail
            this.register.patchValue(data.detail); */
         } else {
@@ -145,9 +146,13 @@ export class MarketDetailComponent extends GeneralFunctions {
       }
     )
   }
-
+  modificarBoolean : boolean = false;
   ModificarProduct(value : any){
-
+    if(value) {
+      this.modificarBoolean = true;
+    } else {
+      this.modificarBoolean = false;
+    }
   }
 }
 
