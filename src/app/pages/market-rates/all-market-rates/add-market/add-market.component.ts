@@ -148,4 +148,7 @@ export class AddMarketComponent extends GeneralFunctions {
 
   Crear tabla proveedores detalle donde tendremos registrado los precioes de compra, marca, (en procesos, traido) y nombre proveedor
   */
+  searchRUC(){
+    
+  }
 }
