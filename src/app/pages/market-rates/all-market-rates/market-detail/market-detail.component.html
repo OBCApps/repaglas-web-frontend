@@ -3,20 +3,23 @@
     <div class="bg-white row m-0 w-full sombreado ">
         <div class="col-lg-4 ">
             <div class="row m-0 py-2">
-                <!-- <div class="col-12 global-center">
+                <div class="col-12 global-center">
                     <img src="./assets/images/repaglas_1.png" class="rounded-full h-20 border ">
-                </div> -->
+                </div>
                 <div class="col-12 text-center">
                     
                     <p><b>Solphed: </b> {{MarketRates.solped_cliente}} </p>
-                    <p><b>fecha de Envio: </b> {{MarketRates.fecha_envio}} </p>
-                    <p><b>Vendedor: </b> {{MarketRates.vendedor}} </p>
-                    <p><b>Estado: </b> {{MarketRates.estado}} </p>
+                    <p><b>fecha de Envio: </b> {{MarketRates.fecha_envio}} </p>                    
                 </div>
+                
 
+                
             </div>
         </div>
-        
+        <div class="col-8 text-center">                    
+            <p><b>Vendedor: </b> {{MarketRates.vendedor}} </p>
+            <p><b>Estado: </b> {{MarketRates.estado}} </p>
+        </div>
         <div class="col-12 global-end">
 
             <div (click)="changeTypeSolicitud('info')"
@@ -81,71 +84,77 @@
                         </div> -->
                         <div class="col-lg-9 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">SKU</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.sku"  placeholder="No incluido" required>
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.sku"  placeholder="No incluido" required [disabled]="!modificarBoolean">
                         </div>
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">-</label>
                             <!-- (click)="searchSKU()" -->
-                            <button [class]="inputNormalIn"  class="bg-blue-500 h-8 hover:bg-blue-700 text-white  font-bold  rounded">
+                            <button [class]="inputNormalIn"  class="bg-blue-500 h-8 hover:bg-blue-700 text-white  font-bold  rounded" [disabled]="!modificarBoolean">
                                 BUSCAR
                               </button>
                         </div>
                         
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">Descripcion</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.descripcion"  placeholder="No incluido"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.descripcion" [disabled]="!modificarBoolean" placeholder="No incluido"
                                 required>
                         </div>
                         <div class="col-lg-2 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">Cantidad</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.cantidad" placeholder="No incluido"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.cantidad" [disabled]="!modificarBoolean" placeholder="No incluido"
                                 required>
                         </div>
                         <div class="col-lg-2 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">Precio Venta</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_venta" placeholder="No incluido"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_venta" [disabled]="!modificarBoolean" placeholder="No incluido"
                                 required>
                         </div>
                         <div class="col-lg-2 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">Precio Compra</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_compra" placeholder="No incluido"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_compra" [disabled]="!modificarBoolean" placeholder="No incluido"
                                 required>
                         </div>
                         <div class="col-lg-2 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel"> Precio Original </label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_original"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.precio_original" [disabled]="!modificarBoolean"
                                 placeholder="No incluido" required>
                         </div>
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel"> Marca Alternativa</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.marca_alternativa"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.marca_alternativa" [disabled]="!modificarBoolean"
                                 placeholder="No incluido" required>
                         </div>
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel"> Lead Time</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.lead_time"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.lead_time" [disabled]="!modificarBoolean"
                                 placeholder="No incluido" required>
                         </div>
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel"> Proveedor</label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.proveedor" placeholder="No incluido"
+                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.proveedor" [disabled]="!modificarBoolean" placeholder="No incluido"
                                 required>
-                        </div>
-                        <div class="col-lg-3 my-1 2xl:my-2">
-                            <label [class]="inputNormalLabel"> Vendedor </label>
-                            <input type="text" [class]="inputNormalIn" [(ngModel)]="item.vendedor" placeholder="No incluido"
-                                required>
-                        </div>
+                        </div>                        
         
         
                     </div>
                 </div>
             </div>
         </div>
-        <div class="global-center py-2">
-            <button (click)="ModificarProduct(DetailProduct.value)"
+        <div *ngIf="!modificarBoolean" class="global-center p-2 mx-2" >
+            <button (click)="ModificarProduct(true)"
                 class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
                MODIFICAR
+            </button>
+        </div>
+        <div *ngIf="modificarBoolean" class="global-center p-2 " >
+            <button (click)="ModificarProduct(false)"
+                class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-blue_global py-2 px-4 text-sm bg-blue_global">
+               CANCELAR
+            </button>
+
+            <button (click)="updateMarketRates(MarketRates)"
+                class="text-white font-medium border mx-2 border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+               GUARDAR 
             </button>
         </div>
     </div>

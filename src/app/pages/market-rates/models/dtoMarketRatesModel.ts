@@ -4,7 +4,7 @@ export class DtoMarketRatesModel {
     vendedor: string
     fecha_envio: Date
     estado: string
-    detalleProducto: DtoMarketRatesModelDetalle[]
+    productos: DtoMarketRatesModelDetalle[]
 }
 
 export class DtoMarketRatesModelDetalle {

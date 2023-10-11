@@ -189,8 +189,8 @@ export class AddMarketComponent extends GeneralFunctions {
         this.loadingService.hide();
         console.log(data);
         if (data.status_code == 200) {
-          
           this.register.get('cliente').setValue(data.detail.RazonSocial)
+          this.register.get('vendedor').setValue("Marco Wanly Obregón Casique")
         } else {
           this.error_function(data.detail)
         }
