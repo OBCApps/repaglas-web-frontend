@@ -1,0 +1,85 @@
+<div class=" m-5 rounded-lg ">
+    <div>
+        <h1 class="text-xl font-semibold  text-[#222222]">Lista de Cotizaciones</h1>
+    </div>
+    <div class="row m-0">
+        <div class="col-3">
+
+        </div>
+    </div>
+    <div class=" pt-5">
+
+        <button routerLink="/home/add-market-rates"
+            class="text-white rounded-lg font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+            AGREGAR
+        </button>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
+
+    <table class="w-full text-sm text-left text-gray-500   ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50    ">
+            <tr>
+
+                <th scope="col" class="px-6 py-3">
+                    ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    RUC
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Solphed Cliente
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Fecha Envío
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Vendedor
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Estado
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Cotizaciones" (click)="goToDetail(item)"
+                class="bg-white cursor-pointer border-b  hover:bg-gray-50  ">
+
+                <th scope="row" class="flex items-center px-6 py-4  ">
+                    <div class="pl-3">
+                        <div class="text-base font-semibold">{{item.id}}</div>
+
+                    </div>
+                </th>
+                <td class="px-6 py-4">
+                    {{item.ruc}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.solped_cliente}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.fecha_envio}}
+                </td>
+                
+
+                <td class="px-6 py-4">
+                    {{item.vendedor}}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
+                        {{item.estado}}
+                    </div>
+                </td>
+                
+            </tr>
+
+        </tbody>
+    </table>
+</div>

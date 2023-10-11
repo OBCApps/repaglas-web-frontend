@@ -7,8 +7,8 @@
                     <img src="./assets/images/repaglas_1.png" class="rounded-full h-20 border ">
                 </div>
                 <div class="col-12 text-center">
-                    <h1 class="font-semibold text-xl">{{Product.Descripcion}}</h1>
-                    <p><b>SKU: </b>{{Product.SKU}}</p>
+                    <h1 class="font-semibold text-xl">{{MarketRates.solped_cliente}}</h1>
+                    <p><b>RUC: </b> {{MarketRates.ruc}} </p>
                 </div>
 
             </div>
@@ -41,7 +41,7 @@
             </div>
 
            
-            <div (click)="deleteProduct()"
+            <div (click)="deleteMarketRates()"
                 class="px-3 text-red-500 global-center font-normal cursor-pointer py-1 hover:bg-gray-100 text-center leading-4">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -59,7 +59,7 @@
 
 <ul class="pt-1 mx-3" [ngSwitch]="type_solicitud">
     <div *ngSwitchCase='"product"' class="">
-        <form [formGroup]="register" (ngSubmit)="updateProduct(register.value)" class="row m-0 p-0">
+        <form [formGroup]="register" (ngSubmit)="updateMarketRates(register.value)" class="row m-0 p-0">
             <div class="col-md-4 py-1">
                 <div class="min-h-[40vh]  bg-white rounded-lg hover:shadow-md  border">
 

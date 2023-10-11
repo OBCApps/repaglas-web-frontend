@@ -8,7 +8,7 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { LoadingsComponent } from './models/functions/loading/loadings/loadings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
-import { NavComponent } from './pages/nav/nav.component';
+
 import { MarketRatesComponent } from './pages/market-rates/market-rates.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -18,6 +18,12 @@ import { AddClientComponent } from './pages/clients/add-client/add-client.compon
 import { AddProductComponent } from './pages/products/add-product/add-product.component';
 import { ProductsDetailsComponent } from './pages/products/products-details/products-details.component';
 import { NgChartsModule } from 'ng2-charts';
+import { NavComponent } from './nav/nav.component';
+import { RequestMarketRatesComponent } from './pages/market-rates/request-market-rates/request-market-rates.component';
+import { AllMarketRatesComponent } from './pages/market-rates/all-market-rates/all-market-rates.component';
+import { AddMarketComponent } from './pages/market-rates/all-market-rates/add-market/add-market.component';
+import { MarketDetailComponent } from './pages/market-rates/all-market-rates/market-detail/market-detail.component';
+
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -33,6 +39,11 @@ import { NgChartsModule } from 'ng2-charts';
     AddClientComponent,
     AddProductComponent,
     ProductsDetailsComponent,
+    RequestMarketRatesComponent,
+    AllMarketRatesComponent,
+    AddMarketComponent,
+    MarketDetailComponent,
+    
   ],
   imports: [
     HttpClientModule, 
