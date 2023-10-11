@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class MarketRatesService {
   private SERVER = API_ENDPOINT_SEGURIDAD ;
   private clients = this.SERVER + '/cotizacion';
+  private cotizacion_detalle = this.SERVER + '/cotizacion_detalle/cotizacion';
  
   constructor(
     private http: HttpClient,
@@ -20,6 +21,9 @@ export class MarketRatesService {
   }
   getMarketDetail(id : any): Observable<any> {       
     return this.http.get<any>(this.clients + '/' + id);
+  }
+  getMarketDetailProduct(id : any): Observable<any> {       
+    return this.http.get<any>(this.cotizacion_detalle + '/' + id);
   }
   createMarketRates(data : any): Observable<any> {       
     return this.http.post<any>(this.clients + '/' , data);

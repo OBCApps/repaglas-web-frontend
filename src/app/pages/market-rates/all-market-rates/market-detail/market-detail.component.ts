@@ -33,20 +33,7 @@ export class MarketDetailComponent extends GeneralFunctions {
       estado: [{ value: '', disabled: true }],
     });
 
-    this.DetailProduct = this.fb.group({
-      id_cotización:[{ value: '', disabled: false }],
-      solped_cliente:[{ value: '', disabled: false }],
-      sku:[{ value: '', disabled: false }],
-      descripcion:[{ value: '', disabled: false }],
-      cantidad:[{ value: '', disabled: false }],
-      precio_venta:[{ value: '', disabled: false }],
-      lead_time:[{ value: '', disabled: false }],
-      precio_compra:[{ value: '', disabled: false }],
-      precio_original:[{ value: '', disabled: false }],
-      marca_alternativa:[{ value: '', disabled: false }],
-      proveedor:[{ value: '', disabled: false }],
-      vendedor:[{ value: '', disabled: false }],
-    });
+   
   }
 
   MarketRatesId: any = 0
@@ -55,10 +42,11 @@ export class MarketDetailComponent extends GeneralFunctions {
       this.MarketRatesId = +params['id']; // Convierte el id a un número si es necesario
       console.log(this.MarketRatesId);
       this.loadMarketRates()
+      this.loadMarketRatesProducts()
     });
 
   }
-  ProductoAgregados : any [] = []
+  ProductoAgregados: any[] = []
   MarketRates: DtoMarketRatesModel = new DtoMarketRatesModel();;
   loadMarketRates() {
     this.loadingService.show();
@@ -76,7 +64,7 @@ export class MarketDetailComponent extends GeneralFunctions {
             fecha_envio: this.MarketRates.fecha_envio,
             estado: this.MarketRates.estado,
           });
-          this.ProductoAgregados = data.detalleProducto;
+          //this.ProductoAgregados = data.detalleProducto;
 
         } else {
           this.error_function(data.detail)
@@ -87,7 +75,27 @@ export class MarketDetailComponent extends GeneralFunctions {
       }
     )
   }
-  type_solicitud: string = "MarketRates";
+  loadMarketRatesProducts() {
+    this.loadingService.show();
+    this.marketRatesService.getMarketDetailProduct(this.MarketRatesId).subscribe(
+      data => {
+        this.loadingService.hide();
+        console.log(data);
+        if (data.status_code == 200) {
+
+
+          this.ProductoAgregados = data.detail.cotizacion_detalle;
+
+        } else {
+          this.error_function(data.detail)
+        }
+      }, err => {
+        this.loadingService.hide();
+        this.error_function("Error de traer data")
+      }
+    )
+  }
+  type_solicitud: string = "info";
   changeTypeSolicitud(value: any) {
     this.type_solicitud = value;
   }
@@ -136,6 +144,10 @@ export class MarketDetailComponent extends GeneralFunctions {
         this.error_function("Error de traer data")
       }
     )
+  }
+
+  ModificarProduct(value : any){
+
   }
 }
 
