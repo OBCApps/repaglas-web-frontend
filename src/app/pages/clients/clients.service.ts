@@ -21,6 +21,9 @@ export class ClientsService {
   getClient(id : any): Observable<any> {       
     return this.http.get<any>(this.clients + '/' + id);
   }
+  getClientByRUC(id : any): Observable<any> {       
+    return this.http.get<any>(this.clients + '/ruc/' + id);
+  }
   createClients(data : any): Observable<any> {       
     return this.http.post<any>(this.clients + '/' , data);
   }

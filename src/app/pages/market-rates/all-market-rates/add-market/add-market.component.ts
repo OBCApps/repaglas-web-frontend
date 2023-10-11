@@ -5,6 +5,7 @@ import { GeneralFunctions } from 'src/app/models/functions/alerts-function';
 import { MarketRatesService } from '../../market-rates.service';
 import { LoadingService } from 'src/app/models/functions/loading/loadings/loading-service.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
+import { ClientsService } from 'src/app/pages/clients/clients.service';
 
 @Component({
   selector: 'app-add-market',
@@ -24,6 +25,7 @@ export class AddMarketComponent extends GeneralFunctions {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private productsService: ProductsService,
+    private clientsService: ClientsService,
 
 
   ) {
@@ -144,8 +146,8 @@ export class AddMarketComponent extends GeneralFunctions {
       ruc: this.register.value.ruc,
       vendedor: "Marco Wanly Obregón Casique",
       fecha_envio: this.register.value.fecha_envio,
-      estado: this.register.value.estado,
-      productos: this.ProductoAgregados
+      estado: "PENDIENTE",
+      productos: this.ProductoAgregados,
     }
 
 
@@ -181,9 +183,42 @@ export class AddMarketComponent extends GeneralFunctions {
   Crear tabla proveedores detalle donde tendremos registrado los precioes de compra, marca, (en procesos, traido) y nombre proveedor
   */
   searchRUC() {
-    this.register.get('cliente').setValue("Michael Jackson")
+    this.loadingService.show();
+    this.clientsService.getClientByRUC(this.register.value.ruc).subscribe(
+      data => {
+        this.loadingService.hide();
+        console.log(data);
+        if (data.status_code == 200) {
+          
+          this.register.get('cliente').setValue(data.detail.RazonSocial)
+        } else {
+          this.error_function(data.detail)
+        }
+      }, err => {
+        this.loadingService.hide();
+        this.error_function("Error de traer data")
+      }
+    )
+    
   }
   searchSKU() {
+    this.loadingService.show();
+    this.productsService.getProductBySku(this.addDetailProduct.value.sku).subscribe(
+      data => {
+        this.loadingService.hide();
+        console.log(data);
+        if (data.status_code == 200) {
+          
+          this.selectProduct(data.detail)
+        } else {
+          this.error_function(data.detail)
+        }
+      }, err => {
+        this.loadingService.hide();
+        this.error_function("Error de traer data")
+      }
+    )
+    
     this.selectProduct(this.Products[this.getRandomNumber()])
   }
   ShowaddProducto() {
