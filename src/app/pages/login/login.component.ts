@@ -11,8 +11,8 @@ import { LoadingService } from 'src/app/models/functions/loading/loadings/loadin
 })
 export class LoginComponent extends GeneralFunctions {
   // Diseño inputs formulario
-  inputNormalLabel: any = "block pl-1 pb-[.1em] text-xs font-medium text-blue-900 dark:text-white";
-  inputNormalIn: any = "bg-white border border-gray-300 py-[2.5%] w-[60vw] md:w-[40vw]  lg:w-[20vw] outline-none text-blue-900 text-sm  rounded focus:ring-blue-800 focus:border-blue-700 block  p-[2%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:bg-blue-100 border-blue-100 ";
+  inputNormalLabel: any = "block pl-1 pb-[.1em] text-xs font-medium text-blue-900  ";
+  inputNormalIn: any = "bg-white border border-gray-300 py-[2.5%] w-[60vw] md:w-[40vw]  lg:w-[20vw] outline-none text-blue-900 text-sm  rounded focus:ring-blue-800 focus:border-blue-700 block  p-[2%]  disabled:bg-blue-100 border-blue-100 ";
 
   // USUARIO LOGIN
   usuario: any;
@@ -42,11 +42,11 @@ export class LoginComponent extends GeneralFunctions {
 
   login() {
     this.loadingService.show();
-    if (this.isEmpty(this.usuario, this.password)) {
+   /*  if (this.isEmpty(this.usuario, this.password)) {
       this.error_function("Debe completar todos los campos");
       this.loadingService.hide();
       return;
-    }
+    } */
     const data = {
       "user": "Wanly",
       "password": "wanly2023"
@@ -56,7 +56,7 @@ export class LoginComponent extends GeneralFunctions {
       "password": this.password
     }
 
-    this.loginService.login_service(data1).subscribe(
+    this.loginService.login_service(data).subscribe(
       response => {
         this.loadingService.hide();
         console.log(response);

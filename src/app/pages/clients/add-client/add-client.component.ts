@@ -12,8 +12,8 @@ import { GeneralFunctions } from 'src/app/models/functions/alerts-function';
 })
 export class AddClientComponent  extends GeneralFunctions{
   register: FormGroup;
-  inputNormalLabel: any = "block  pb-[.1em] text-xs font-medium  dark:text-white";
-  inputNormalIn: any = "bg-white h-8 border border-[#D3DCE8] outline-none text-blue-900 text-sm  rounded focus:ring-blue-800 focus:border-blue-700 block w-full p-[1.5%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:bg-transparent border-blue-100 ";
+  inputNormalLabel: any = "block  pb-[.1em] text-xs font-medium   ";
+  inputNormalIn: any = "bg-white h-8 border border-[#D3DCE8] outline-none text-blue-900 text-sm  rounded focus:ring-blue-800 focus:border-blue-700 block w-full p-[1.5%]  disabled:bg-transparent border-blue-100 ";
   constructor(
     private router: Router,
     private clientsService: ClientsService,
