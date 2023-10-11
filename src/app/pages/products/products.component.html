@@ -26,9 +26,7 @@
     <table class="w-full text-sm text-left text-gray-500   ">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50    ">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Imagen
-                </th>
+               
                 <th scope="col" class="px-6 py-3">
                     SKU
                 </th>
@@ -41,19 +39,22 @@
                 <th scope="col" class="px-6 py-3">
                     Precio Original
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Fecha de Actualización
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of Products" (click)="goToDetail(item)" class="bg-white cursor-pointer border-b  hover:bg-gray-50  ">
                
-                <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap  ">
+                <!-- <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap  ">
                     <img class="w-10 h-10 rounded-full border" src="./assets/images/repaglas_1.png"
                         alt="Jese image">
-                    <!-- <div class="pl-3">
+                    <div class="pl-3">
                         <div class="text-base font-semibold">{{item.SKU}}</div>
                         <div class="font-normal text-gray-500">{{item.Email}} - <b>RUC: </b> {{item.RUC}} </div>
-                    </div> -->
-                </td>
+                    </div>
+                </td> -->
                 <td class="px-6 py-4">
                     <div class="text-base font-semibold">{{item.SKU}}</div>
                 </td>
@@ -61,14 +62,19 @@
                     {{item.Descripcion}}
                 </td>
                 <td class="px-6 py-4">
-                    <div class="flex items-center">
+                    <!-- <div class="flex items-center">
                         <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> 
                         {{item.Marca}}
-                    </div>
+                    </div> -->
+                    {{item.Marca}}
                 </td>
                 <td class="px-6 py-4">
                     <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a> -->
-                    S/.{{item.PrecioOriginal}}                    
+                    ${{item.PrecioOriginal}}                    
+                </td>
+                <td class="px-6 py-4">
+                    <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a> -->
+                    {{randomDate()}}
                 </td>
             </tr>
             

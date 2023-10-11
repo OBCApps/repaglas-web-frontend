@@ -10,21 +10,21 @@
             </div>
 
             <div class="row m-0 p-0">
-                <div class="col-lg-3 m-0 my-1 2xl:my-2">
+                <div class="col-lg-12 m-0 my-1 2xl:my-2">
                     <label [class]="inputNormalLabel">SKU</label>
                     <input type="text" [class]="inputNormalIn" formControlName="sku" placeholder="No incluido" required>
                 </div>
-                <div class="col-lg-9 my-1 2xl:my-2">
+                <div class="col-lg-12 my-1 2xl:my-2">
                     <label [class]="inputNormalLabel">Descripción</label>
                     <input type="text" [class]="inputNormalIn" formControlName="description" placeholder="No incluido" required>
                 </div>
                 <div class="col-lg-12 my-1 2xl:my-2">
-                    <label [class]="inputNormalLabel">Brand</label>
+                    <label [class]="inputNormalLabel">Marca</label>
                     <input type="text" [class]="inputNormalIn" formControlName="brand" placeholder="No incluido"
                         required>
                 </div>
                 <div class="col-lg-12 my-1 2xl:my-2">
-                    <label [class]="inputNormalLabel">Precio</label>
+                    <label [class]="inputNormalLabel">Precio Original (USD)</label>
                     <input type="number" [class]="inputNormalIn" formControlName="price" placeholder="No incluido"
                         required>
                 </div>
@@ -32,18 +32,18 @@
 
 
             </div>
+            <div class="global-center py-2">
 
+                <button type="submit"
+                    class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+                    GUARDAR
+                </button>
+            </div>
 
         </div>
 
 
     </div>
   
-    <div class="global-center py-2">
-
-        <button type="submit"
-            class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
-            GUARDAR
-        </button>
-    </div>
+   
 </form>

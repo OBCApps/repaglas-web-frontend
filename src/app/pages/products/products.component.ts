@@ -45,4 +45,13 @@ export class ProductsComponent extends GeneralFunctions {
     this.router.navigate(['home/products-detail', client.id] );
     
   }
+  randomDate(): string {
+    const startDate = new Date(2000, 0, 1); // Año inicial
+    const endDate = new Date(); // Fecha actual
+
+    const randomTime = startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime());
+    const randomDate = new Date(randomTime);
+
+    return randomDate.toDateString();
+  }
 }
