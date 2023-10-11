@@ -16,6 +16,11 @@ import { RequestMarketRatesComponent } from './pages/market-rates/request-market
 import { AddMarketComponent } from './pages/market-rates/all-market-rates/add-market/add-market.component';
 import { MarketDetailComponent } from './pages/market-rates/all-market-rates/market-detail/market-detail.component';
 
+import { SuppliersComponenet } from './pages/suppliers/suppliers.component';
+import { SuppliersDetailsComponent } from './pages/suppliers/suppliers-details/suppliers-details.component';
+import { AddSupplierComponent } from './pages/suppliers/add-suppliers/add-suppliers.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -86,7 +91,19 @@ const routes: Routes = [
         path: 'reports',
         component: ReportsComponent,        
       },
-
+      {
+        path: 'suppliers',
+        component: SuppliersComponenet,        
+      },
+      {
+        path: 'suppliers-details/:id',
+        component: SuppliersDetailsComponent,            
+      },
+      {
+        path: 'add-suppliers',
+        component: AddSupplierComponent,
+      },
+      
     ]
 
   },

@@ -24,6 +24,11 @@ import { AllMarketRatesComponent } from './pages/market-rates/all-market-rates/a
 import { AddMarketComponent } from './pages/market-rates/all-market-rates/add-market/add-market.component';
 import { MarketDetailComponent } from './pages/market-rates/all-market-rates/market-detail/market-detail.component';
 
+import { SuppliersComponenet } from './pages/suppliers/suppliers.component';
+import { SuppliersDetailsComponent } from './pages/suppliers/suppliers-details/suppliers-details.component';
+import { AddSupplierComponent } from './pages/suppliers/add-suppliers/add-suppliers.component';
+
+
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -44,6 +49,9 @@ import { MarketDetailComponent } from './pages/market-rates/all-market-rates/mar
     AddMarketComponent,
     MarketDetailComponent,
     
+    SuppliersComponenet,
+    SuppliersDetailsComponent,
+    AddSupplierComponent,
   ],
   imports: [
     HttpClientModule, 

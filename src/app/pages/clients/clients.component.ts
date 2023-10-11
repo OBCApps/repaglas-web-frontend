@@ -32,6 +32,8 @@ export class ClientsComponent  extends GeneralFunctions{
       data => {
         this.loadingService.hide();
         console.log(data);
+        console.log(typeof data.detail);
+
         if(data.status_code == 200) {
           this.Clients = data.detail
         } else {
