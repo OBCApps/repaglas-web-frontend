@@ -13,7 +13,7 @@ export class DtoMarketRatesModelDetalle {
     sku: string
     descripcion: string
     cantidad: string
-    precio_venta: string
+    precio_venta: string    
     lead_time: string
     precio_compra: string
     precio_original: string

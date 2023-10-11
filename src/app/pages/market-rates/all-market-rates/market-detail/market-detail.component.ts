@@ -139,4 +139,9 @@ export class MarketDetailComponent extends GeneralFunctions {
   }
 }
 
+/* 
+  - Nombre del cliente
+  - 
+*/
+
 
