@@ -6,7 +6,8 @@ import { MarketRatesService } from '../../market-rates.service';
 import { LoadingService } from 'src/app/models/functions/loading/loadings/loading-service.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
 import { ClientsService } from 'src/app/pages/clients/clients.service';
-
+import Swal from 'sweetalert2';
+import { DtoAddCotizacionModel } from '../../models/dtoAddCotizacion';
 @Component({
   selector: 'app-add-market',
   templateUrl: './add-market.component.html',
@@ -18,6 +19,8 @@ export class AddMarketComponent extends GeneralFunctions {
   ProductoAgregados: any[] = []
   inputNormalLabel: any = "block  pb-[.1em] text-xs font-medium   ";
   inputNormalIn: any = "bg-white h-8 border border-[#D3DCE8] outline-none text-blue-900 text-sm  rounded focus:ring-blue-800 focus:border-blue-700 block w-full p-[1.5%]  disabled:bg-transparent border-blue-100 ";
+
+  cotizazion: DtoAddCotizacionModel = new DtoAddCotizacionModel()
   constructor(
     private router: Router,
     private marketRatesService: MarketRatesService,
@@ -32,27 +35,28 @@ export class AddMarketComponent extends GeneralFunctions {
     super();
     this.register = this.fb.group({
       ruc: [{ value: '', disabled: false }],
-      solped_cliente: [{ value: '', disabled: false }],
       cliente: [{ value: '', disabled: false }],
       vendedor: [{ value: '', disabled: false }],
       fecha_envio: [{ value: '', disabled: false }],
+      fecha_solicitud: [{ value: '', disabled: false }],
       estado: [{ value: '', disabled: false }],
-      notas_abiertas: [{ value: '', disabled: false }],
+      notas: [{ value: '', disabled: false }],
     });
 
     this.addDetailProduct = this.fb.group({
-      id_cotización: [{ value: '', disabled: false }],
-      solped_cliente: [{ value: '', disabled: false }],
       sku: [{ value: '', disabled: false }],
       descripcion: [{ value: '', disabled: false }],
+      solphed_cliente: [{ value: '', disabled: false }],
       cantidad: [{ value: '', disabled: false }],
       precio_venta: [{ value: '', disabled: false }],
-      lead_time: [{ value: '', disabled: false }],
       precio_compra: [{ value: '', disabled: false }],
       precio_original: [{ value: '', disabled: false }],
+      marca_original: [{ value: '', disabled: false }],
       marca_alternativa: [{ value: '', disabled: false }],
+      ruc_proveedor: [{ value: '', disabled: false }],
       proveedor: [{ value: '', disabled: false }],
-      vendedor: [{ value: '', disabled: false }],
+      lead_time: [{ value: '', disabled: false }],
+     
     });
 
   }
@@ -80,17 +84,37 @@ export class AddMarketComponent extends GeneralFunctions {
   }
 
   addProductBoolean: boolean = false;
+  addCSVProduct: boolean = false;
   addProduct(value: any) {
-    this.ProductoAgregados.push(value)
+   
+    this.cotizazion.productos.push(value)
     this.addProductBoolean = false
-    //this.register.reset()
     this.addDetailProduct.reset()
   }
 
   deleteProduct(product: any) {
-    const indexAEliminar = this.ProductoAgregados.findIndex(item => item.solphed_cliente === product);
-    this.ProductoAgregados.splice(indexAEliminar, 1);
+    const indexAEliminar = this.cotizazion.productos.findIndex(item => item.solphed_cliente === product.solphed_cliente);
+    this.cotizazion.productos.splice(indexAEliminar, 1);
+  }
 
+  updateProduct(product: any) {
+    const indexAModificar = this.cotizazion.productos.findIndex(item => item.solphed_cliente === product.solphed_cliente);
+    console.log("indexAModificar", indexAModificar);
+
+    if (indexAModificar !== -1) {
+      this.cotizazion.productos[indexAModificar] = product;  // Reemplaza 'nuevoValor' con el nuevo valor que desees asignar
+      this.succes_function("Modificación Existosa")
+      this.addProductBoolean = false
+      this.addDetailProduct.reset()
+    }
+
+
+  }
+  updateBool: boolean = false
+  editProduct(product: any) {
+    this.updateBool = true;
+    this.addDetailProduct.patchValue(product)
+    this.addProductBoolean = true
   }
   ListProductBoolean: boolean = false;
   ListProducts(value: any) {
@@ -127,9 +151,9 @@ export class AddMarketComponent extends GeneralFunctions {
       sku: item.SKU,
       descripcion: item.Descripcion,
       cantidad: item.cantidad,
-      precio_venta: 0,
+      precio_venta: null,
       lead_time: item.lead_time,
-      precio_compra: 0,
+      precio_compra: null,
       precio_original: item.PrecioOriginal,
       marca_alternativa: item.Marca,
       proveedor: item.proveedor,
@@ -140,33 +164,29 @@ export class AddMarketComponent extends GeneralFunctions {
   }
 
   registrarCotizacion() {
-
-    const data = {
-      solped_cliente: this.register.value.solped_cliente,
-      ruc: this.register.value.ruc,
-      vendedor: "Marco Wanly Obregón Casique",
-      fecha_envio: this.register.value.fecha_envio,
-      estado: "PENDIENTE",
-      productos: this.ProductoAgregados,
-    }
-
+    this.cotizazion.ruc = this.register.value.ruc
+    this.cotizazion.cliente = this.register.value.cliente
+    this.cotizazion.vendedor = this.register.value.vendedor
+    this.cotizazion.fecha_envio = this.register.value.fecha_envio
+    this.cotizazion.fecha_solicitud = this.register.value.fecha_solicitud
+    this.cotizazion.estado = "PENDIENTE"
+    this.cotizazion.notas = this.register.value.notas
 
     this.loadingService.show();
-    this.marketRatesService.createMarketRates(data).subscribe(
+    console.log(this.cotizazion);
+
+    this.marketRatesService.createMarketRates(this.cotizazion).subscribe(
       data => {
         this.loadingService.hide();
         console.log(data);
-        if (data.status_code == 200) {
-          this.succes_function("Cotizacion registrada");
-          this.register.reset()
-          this.addDetailProduct.reset()
-          this.ProductoAgregados = []
-        } else {
-          this.error_function(data.detail)
-        }
+
+        this.succes_function("Cotizacion registrada");
+        this.register.reset()
+        this.addDetailProduct.reset()
+
       }, err => {
         this.loadingService.hide();
-        this.error_function("Error de traer data")
+        this.error_function(err.error.detail.message)
       }
     )
   }
@@ -187,19 +207,18 @@ export class AddMarketComponent extends GeneralFunctions {
     this.clientsService.getClientByRUC(this.register.value.ruc).subscribe(
       data => {
         this.loadingService.hide();
-        console.log(data);
-        if (data.status_code == 200) {
-          this.register.get('cliente').setValue(data.detail.RazonSocial)
-          this.register.get('vendedor').setValue("Marco Wanly Obregón Casique")
-        } else {
-          this.error_function(data.detail)
-        }
+
+        this.register.get('cliente').setValue(data.detail.RazonSocial)
+        this.register.get('vendedor').setValue("Marco Wanly Obregón Casique")
+
       }, err => {
+        console.log("ERROR", err);
+
         this.loadingService.hide();
-        this.error_function("Error de traer data")
+        this.error_function(err.error.detail.message)
       }
     )
-    
+
   }
   searchSKU() {
     this.loadingService.show();
@@ -207,26 +226,93 @@ export class AddMarketComponent extends GeneralFunctions {
       data => {
         this.loadingService.hide();
         console.log(data);
-        if (data.status_code == 200) {
-          
-          this.selectProduct(data.detail)
-        } else {
-          this.error_function(data.detail)
-        }
+        this.selectProduct(data.detail)
       }, err => {
         this.loadingService.hide();
-        this.error_function("Error de traer data")
+        this.error_function(err.error.detail.message)
       }
     )
-    
-    this.selectProduct(this.Products[this.getRandomNumber()])
+
+
+  }
+  searchProveedorByRUC() {
+    this.loadingService.show();
+    this.clientsService.getClientByRUC(this.addDetailProduct.value.ruc_proveedor).subscribe(
+      data => {
+        this.loadingService.hide();
+
+        this.addDetailProduct.get('proveedor').setValue(data.detail.RazonSocial)
+      }, err => {
+        this.loadingService.hide();
+        this.error_function(err.error.detail.message)
+      }
+    )
   }
   ShowaddProducto() {
-    this.addProductBoolean = true
+    if (this.cotizazion.productos.length == 0) {
+      Swal.fire({
+        title: '¿Cómo desea agregar sus productos?',
+        showCancelButton: true,
+        showDenyButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: 'Manualmente',
+        denyButtonText: `Importar CSV`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.addProductBoolean = true
+        } else if (result.isDenied) {
+          this.addCSVProduct = true
+        }
+      })
+    } else {
+      this.addProductBoolean = true
+    }
+
+
   }
-  getRandomNumber(): number {
-    // Genera un número aleatorio entre 1 y 10
-    const randomNumber = Math.floor(Math.random() * 8) + 1;
-    return randomNumber;
+
+  cancelAdd() {
+    this.addProductBoolean = false;
+    this.addCSVProduct = false;
+    this.addDetailProduct.reset()
+  }
+
+  // CARGAR ARCHIVO
+  verDetalleArchivo: boolean = false;
+  selecteddocumento: any = {
+    archivodocumento: '',
+    fechaadjuntomostrar: '',
+    tamanorealarchivo: '',
+    tipoarchivo: '',
+  };
+  change() {
+    this.verDetalleArchivo = false
+  }
+  labelCV: any;
+  cvSource: any;
+  acceptextensions: any = "AFASDF"
+  cargarCV(event: any) {
+    console.log("caRGAR CV", event);
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.labelCV = event.target.files[0].name;
+      this.cvSource = file;
+      if (event.target.files[0].type !== "application/csv") {
+        this.showerrorAlert("El formato debe ser pdf")
+        /* this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Lo sentimos el formato del archivo debe ser PDF' });
+        this.postulacionForms.patchValue({ cv: '' }); */
+        //this.labelCV = "Selecciona un archivo";
+      } else {
+        this.verDetalleArchivo = true;
+        console.log("Archivo: ", event.target.files[0]);
+
+        this.selecteddocumento.archivodocumento = event.target.files[0].name;
+        this.selecteddocumento.fechaadjuntomostrar = event.target.files[0].lastModifiedDate;
+        this.selecteddocumento.tamanorealarchivo = event.target.files[0].size / (1024 * 1024);
+        this.selecteddocumento.tipoarchivo = event.target.files[0].type;
+      }
+    }
   }
 }
