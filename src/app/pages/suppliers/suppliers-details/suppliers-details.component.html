@@ -104,8 +104,25 @@
 </div>
 
 <ul class="pt-1 mx-3" [ngSwitch]="type_solicitud">
+    <div *ngIf="!boolUpdate" class="global-center-start p-2 mx-2">
+        <button (click)="activateUpdate(true)"
+            class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+            MODIFICAR
+        </button>
+    </div>
+    <div *ngIf="boolUpdate" class="global-center-start p-2 ">
+        <button (click)="activateUpdate(false)"
+            class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-blue_global py-2 px-4 text-sm bg-blue_global">
+            CANCELAR
+        </button>
+
+        <button (click)="updateSupplier(register.value)"
+            class="text-white font-medium border mx-2 border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+            GUARDAR
+        </button>
+    </div>
     <div *ngSwitchCase='"profile"' class="" >
-        <form [formGroup]="register" (ngSubmit)="updateSupplier(register.value)" class="row m-0 p-0">
+        <form [formGroup]="register"  class="row m-0 p-0">
             <div class="col-md-4 py-1">
                 <div class="min-h-[40vh]  bg-white rounded-lg hover:shadow-md  border">
 
@@ -113,17 +130,17 @@
                         <h1 class="font-semibold ">
                             Detalles Personal
                         </h1>
-                        <svg  *ngIf="!boolUpdate" (click)="activateUpdate(true)" class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
-                        <svg  *ngIf="boolUpdate" (click)="activateUpdate(false)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"class="bi bi-pen-fill cursor-pointer" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" /></svg>
+                       <!--  <svg  *ngIf="!boolUpdate" (click)="activateUpdate(true)" class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
+                        <svg  *ngIf="boolUpdate" (click)="activateUpdate(false)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"class="bi bi-pen-fill cursor-pointer" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" /></svg> -->
                        
                     </div>
 
                     <div class="row m-0 p-0">
-                        <div class="col-lg-3 m-0 my-1 2xl:my-2">
+                        <!-- <div class="col-lg-3 m-0 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">ID</label>
                             <input type="text" [class]="inputNormalIn" 
                                 formControlName="id" placeholder="No incluido" required >
-                        </div>
+                        </div> -->
                         <div class="col-lg-9 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">RUC</label>
                             <input type="text" [class]="inputNormalIn" formControlName="ruc" placeholder="No incluido" required >
@@ -143,12 +160,7 @@
     
                         
                     </div>
-                    <div *ngIf="boolUpdate" class="global-center py-2">
-
-                        <button  type="submit" class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global"  >
-                            GUARDAR
-                        </button>
-                    </div>
+                  
 
                 </div>
                 
@@ -161,7 +173,7 @@
                         <h1 class="font-semibold">
                             Datos de Contacto
                         </h1>
-                        <svg class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
+                        <!-- <svg class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg> -->
                     </div>
                     <div class="row m-0 p-0">
                         <div class="col-lg-12 m-0 my-1 2xl:my-2">
@@ -189,7 +201,7 @@
                         <h1 class="font-semibold ">
                             Direcciones
                         </h1>
-                        <svg class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
+                        <!-- <svg class="h-5 w-5 text-black" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg> -->
                     </div>
 
                     <div class="row m-0 p-0">
