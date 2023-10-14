@@ -1,4 +1,5 @@
 export class DtoAddCotizacionModel {
+    id : string
     ruc: string
     cliente: string
     vendedor: string

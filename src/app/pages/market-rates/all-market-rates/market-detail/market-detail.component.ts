@@ -8,6 +8,7 @@ import { DtoMarketRatesModel } from '../../models/dtoMarketRatesModel';
 import { DtoAddCotizacionModel } from '../../models/dtoAddCotizacion';
 import { ProductsService } from 'src/app/pages/products/products.service';
 import { SuppliersService } from 'src/app/pages/suppliers/suppliers.service';
+import { ExcelService } from '../../models/excel.service';
 
 @Component({
   selector: 'app-market-detail',
@@ -30,6 +31,7 @@ export class MarketDetailComponent extends GeneralFunctions {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private suppliersService: SuppliersService,
+    private _ExcelService: ExcelService,
 
   ) {
     super();
@@ -228,7 +230,24 @@ export class MarketDetailComponent extends GeneralFunctions {
       }
     )
   }
+  dowload(): void{
+    /*
+    this.marketRatesService.getMarketDetailProduct(20).subscribe((Response)=>{
+      console.log("dsdsadsadas");
 
+      console.log(Response);
+      console.log("dsdsadsadas");
+      this._ExcelService.dowloadExcel(Response);
+    })*/
+    console.log("marketrates_ ",this.MarketRates);
+    console.log("productos ag ",this.ProductoAgregados);
+    
+    this.ProductoAgregados.forEach(item=>{
+      this.MarketRates.productos.push(item);
+    })
+    this._ExcelService.dowloadExcel(this.MarketRates);
+    
+  }
 
 }
 

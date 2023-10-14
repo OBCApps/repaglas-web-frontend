@@ -108,15 +108,19 @@
 
 <ul class="pt-1 mx-3" [ngSwitch]="type_solicitud">
     <div *ngSwitchCase='"info"' class="">
-        <div *ngIf="!modificarBoolean" class="global-center-start p-2 mx-2">
+        <div *ngIf="!modificarBoolean" class="global-center-between p-2 mx-2">
             <button (click)="ModificarProduct(true)"
                 class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
                 MODIFICAR
             </button>
+            <button (click)="dowload()"
+                class="text-white font-medium border mx-2 border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+                EXCEL
+            </button>
         </div>
-        <div *ngIf="modificarBoolean" class="global-center p-2 ">
+        <div *ngIf="modificarBoolean" class="global-center-start p-2 ">
             <button (click)="ModificarProduct(false)"
-                class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-blue_global py-2 px-4 text-sm bg-blue_global">
+                class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-white py-2 px-4 text-sm bg-blue_global">
                 CANCELAR
             </button>
 
@@ -125,6 +129,7 @@
                 GUARDAR
             </button>
         </div>
+
 
         <!-- <div *ngFor="let item of ProductoAgregados" class="row m-0 p-0">
             <div class="col-md-12 py-1">
