@@ -148,7 +148,7 @@ export class AddMarketComponent extends GeneralFunctions {
       lead_time: item.lead_time,
       precio_compra: null,
       precio_original: item.PrecioOriginal,
-      marca_alternativa: item.Marca,
+      marca_original: item.Marca,
       proveedor: item.proveedor,
       vendedor: "Marco Wanly Obregón Casique", // Logeado
     });

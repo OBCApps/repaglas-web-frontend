@@ -60,12 +60,11 @@ export class LoginComponent extends GeneralFunctions {
       response => {
         this.loadingService.hide();
         console.log(response);
-        if(response.status_code == 202) {
+        
+          sessionStorage.setItem('AuthorizacionPortalRepaglas', JSON.stringify(response.detail));
           this.succes_function("Credenciales validados");
           this.router.navigate(['/home'])
-        } else {
-          this.error_function(response.detail)
-        }
+        
       } , err => {
         this.error_function("Error de Logeo")
       }

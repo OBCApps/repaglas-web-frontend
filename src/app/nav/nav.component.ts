@@ -48,4 +48,10 @@ export class NavComponent {
       splitHref : "suppliers",      
     }
   ]
+  userLOCAL : any ;
+  ngOnInit(){
+    this.userLOCAL = JSON.parse(sessionStorage.getItem('AuthorizacionPortalRepaglas')!);
+    console.log("this.userLOCAL",this.userLOCAL);
+    
+  }
 }
