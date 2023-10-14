@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/pages/products/products.service';
 import { ClientsService } from 'src/app/pages/clients/clients.service';
 import Swal from 'sweetalert2';
 import { DtoAddCotizacionModel } from '../../models/dtoAddCotizacion';
+import { SuppliersService } from 'src/app/pages/suppliers/suppliers.service';
 @Component({
   selector: 'app-add-market',
   templateUrl: './add-market.component.html',
@@ -25,12 +26,10 @@ export class AddMarketComponent extends GeneralFunctions {
     private router: Router,
     private marketRatesService: MarketRatesService,
     private loadingService: LoadingService,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
     private productsService: ProductsService,
     private clientsService: ClientsService,
-
-
+    private suppliersService: SuppliersService,
   ) {
     super();
     this.register = this.fb.group({
@@ -56,7 +55,7 @@ export class AddMarketComponent extends GeneralFunctions {
       ruc_proveedor: [{ value: '', disabled: false }],
       proveedor: [{ value: '', disabled: false }],
       lead_time: [{ value: '', disabled: false }],
-     
+
     });
 
   }
@@ -64,19 +63,14 @@ export class AddMarketComponent extends GeneralFunctions {
   ngOnInit() {
     this.loadProducts()
   }
+
   registerMarket(register: any) {
     this.loadingService.show();
     this.marketRatesService.createMarketRates(register).subscribe(
       data => {
         this.loadingService.hide();
-        console.log(data);
-        if (data.status_code == 200) {
-          this.succes_function(data.detail.message);
+        this.succes_function(data.detail.message);
 
-          //this.router.navigate(["home/all-market-rates"])
-        } else {
-          this.error_function(data.detail)
-        }
       }, err => {
         this.error_function("Error de traer data")
       }
@@ -86,7 +80,6 @@ export class AddMarketComponent extends GeneralFunctions {
   addProductBoolean: boolean = false;
   addCSVProduct: boolean = false;
   addProduct(value: any) {
-   
     this.cotizazion.productos.push(value)
     this.addProductBoolean = false
     this.addDetailProduct.reset()
@@ -137,7 +130,7 @@ export class AddMarketComponent extends GeneralFunctions {
           this.error_function(data.detail)
         }
       }, err => {
-        this.error_function("Error de traer data")
+        this.error_function(err.error.detail.message)
       }
     )
   }
@@ -237,7 +230,7 @@ export class AddMarketComponent extends GeneralFunctions {
   }
   searchProveedorByRUC() {
     this.loadingService.show();
-    this.clientsService.getClientByRUC(this.addDetailProduct.value.ruc_proveedor).subscribe(
+    this.suppliersService.getSupplierByRUC(this.addDetailProduct.value.ruc_proveedor).subscribe(
       data => {
         this.loadingService.hide();
 

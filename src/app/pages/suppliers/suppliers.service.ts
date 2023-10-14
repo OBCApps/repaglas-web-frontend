@@ -21,6 +21,9 @@ export class SuppliersService {
   getSupplier(id : any): Observable<any> {       
     return this.http.get<any>(this.proveedores + '/' + id);
   }
+  getSupplierByRUC(id : any): Observable<any> {       
+    return this.http.get<any>(this.proveedores + '/ruc/' + id);
+  }
   createSupplier(data : any): Observable<any> {       
     return this.http.post<any>(this.proveedores + '/' , data);
   }

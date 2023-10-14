@@ -1,38 +1,64 @@
 <div class="mx-3 my-5">
 
     <div class="bg-white row m-0 w-full sombreado text-gray-500 text-sm ">
-        <div class="col-lg-4  ">
+        <div class="col-lg-3  ">
             <div class="row m-0 py-2">
                 <div class="col-12 global-center">
                     <img src="./assets/images/repaglas_1.png" class="rounded-full h-20 border ">
                 </div>
-
                 <div class="col-12 text-center  ">
-                    <p><b>RUC: </b> {{MarketRates.ruc}} </p>
-                    <p><b>Cliente</b> {{MarketRates.vendedor}} </p>
+                    <div class="global-end py-1">
+                        <b class="px-2">RUC: </b>
+                        <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.ruc"
+                            [disabled]="!modificarBoolean" required>
+                    </div>
 
+                    <div class="global-end py-1">
+                        <b class="px-2">Cliente: </b>
+                        <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.cliente"
+                            [disabled]="!modificarBoolean" required>
+                    </div>
 
                 </div>
 
 
             </div>
         </div>
-        <div class="col-4 text-center global-center font-normal">
+        <div class="col-5 text-center global-center font-normal">
             <div>
-                <p><b>Solphed: </b> {{MarketRates.solped_cliente}} </p>
-                <p><b>Estado: </b> {{MarketRates.estado}} </p>
-                <p><b>fecha de Envio: </b> {{MarketRates.fecha_envio}} </p>
+                <div class="global-end py-1">
+                    <b class="px-2">Estado: </b>
+                    <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.estado"
+                        [disabled]="!modificarBoolean" required>
+                </div>
+                <div class="global-end py-1">
+                    <b class="px-2">Fecha de Solicitud: </b>
+                    <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.fecha_solicitud"
+                        [disabled]="!modificarBoolean" required>
+                </div>
+                <div class="global-end py-1">
+                    <b class="px-2">Fecha de Envio: </b>f
+                    <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.fecha_envio"
+                        [disabled]="!modificarBoolean" required>
+                </div>
+
             </div>
 
         </div>
 
-        <div class="col-4 text-center global-center font-normal" >
+        <div class="col-4 text-center global-center font-normal">
             <div>
+                <div class="global-end py-1">
+                    <b class="px-2">Notas: </b>
 
-                
-                <p><b>Estado: </b> {{MarketRates.estado}} </p>
-                <p><b>Notas: </b> Stock Variable </p>
-                <p><b>Vendedor: </b> {{MarketRates.vendedor}} </p>
+                    <textarea id="message" rows="4" [class]="inputCabeceraIn + 'h-[10vh] w-full' "
+                        [(ngModel)]="MarketRates.notas" placeholder="Agrega notas..."></textarea>
+                </div>
+                <div class="global-end py-1">
+                    <b class="px-2">Vendedor: </b>
+                    <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.vendedor"
+                        [disabled]="!modificarBoolean" required>
+                </div>
 
             </div>
         </div>
@@ -64,7 +90,7 @@
             </div>
 
 
-            <div
+            <div (click)="deleteMarketRates()"
                 class="px-3 text-red-500 global-center font-normal cursor-pointer py-1 hover:bg-gray-100 text-center leading-4">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -82,23 +108,33 @@
 
 <ul class="pt-1 mx-3" [ngSwitch]="type_solicitud">
     <div *ngSwitchCase='"info"' class="">
-        <div *ngFor="let item of ProductoAgregados" class="row m-0 p-0">
+        <div *ngIf="!modificarBoolean" class="global-center-start p-2 mx-2">
+            <button (click)="ModificarProduct(true)"
+                class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+                MODIFICAR
+            </button>
+        </div>
+        <div *ngIf="modificarBoolean" class="global-center p-2 ">
+            <button (click)="ModificarProduct(false)"
+                class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-blue_global py-2 px-4 text-sm bg-blue_global">
+                CANCELAR
+            </button>
+
+            <button (click)="updateMarketRates(MarketRates)"
+                class="text-white font-medium border mx-2 border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+                GUARDAR
+            </button>
+        </div>
+
+        <!-- <div *ngFor="let item of ProductoAgregados" class="row m-0 p-0">
             <div class="col-md-12 py-1">
                 <div class="py-2  bg-white rounded-lg hover:shadow-md  border">
-
                     <div class="global-center-between p-2 border-b">
                         <h1 class="font-semibold ">
                             PRODUCTO
                         </h1>
-
                     </div>
-
-                    <div class="row m-0 p-0">
-                        <!-- <div class="col-lg-12 my-1 2xl:my-2">
-                            <label [class]="inputNormalLabel">Solphed Cliente</label>
-                            <input type="text" [class]="inputNormalIn" formControlName="solped_cliente"
-                                placeholder="No incluido" required>
-                        </div> -->
+                    <div class="row m-0 p-0">                    
                         <div class="col-lg-9 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">SKU</label>
                             <input type="text" [class]="inputNormalIn" [(ngModel)]="item.sku" placeholder="No incluido"
@@ -106,8 +142,8 @@
                         </div>
                         <div class="col-lg-3 my-1 2xl:my-2">
                             <label [class]="inputNormalLabel">-</label>
-                            <!-- (click)="searchSKU()" -->
-                            <button [class]="inputNormalIn"
+                      
+                            <button [class]="inputNormalIn" (click)="searchSKU(item.sku)"
                                 class="bg-blue-500 h-8 hover:bg-blue-700 text-white  font-bold  rounded"
                                 [disabled]="!modificarBoolean">
                                 BUSCAR
@@ -159,23 +195,224 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="!modificarBoolean" class="global-center p-2 mx-2">
-            <button (click)="ModificarProduct(true)"
-                class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
-                MODIFICAR
-            </button>
-        </div>
-        <div *ngIf="modificarBoolean" class="global-center p-2 ">
-            <button (click)="ModificarProduct(false)"
-                class="text-white font-medium border mx-2 border-blue_global hover:text-blue_global hover:bg-blue_global py-2 px-4 text-sm bg-blue_global">
-                CANCELAR
-            </button>
+        </div> -->
 
-            <button (click)="updateMarketRates(MarketRates)"
-                class="text-white font-medium border mx-2 border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
-                GUARDAR
-            </button>
+        <!-- LISTA DE PRODUCTOS -->
+        <div *ngIf="MarketRates.productos.length != 0" class="py-1">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
+                <table class="w-full text-sm text-left text-gray-500   ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50    ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                SKU
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Descripción
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Solphed Client
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Cantidad
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
+                                Precio Venta
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Precio Original
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Marca Alternativa
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Marca Original
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
+                                Acciones
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of MarketRates.productos"
+                            class="bg-white cursor-pointer border-b  hover:bg-gray-50  ">
+
+                            <td class="px-6 py-4">
+                                <div class="text-base font-semibold">{{item.sku}}</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{item.descripcion}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{item.solphed_cliente}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{item.cantidad}}
+                            </td>
+                            <td class="px-6 py-4">
+                                $ {{item.precio_venta}}
+                            </td>
+                            <td class="px-6 py-4">
+                                $ {{item.precio_original}}
+                            </td>
+
+                            <td class="px-6 py-4">
+                                {{item.marca_alternativa}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{item.marca_original}}
+                            </td>
+
+                            <td scope="col" class="px-6 py-3 global-center">
+                                <button (click)="editProduct(item)" [disabled]="!modificarBoolean">
+
+                                    <svg class="h-10 w-10 text-blue-500 px-2" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+                                    </svg>
+                                </button>
+                                <button (click)="deleteProduct(item)" [disabled]="!modificarBoolean">
+
+                                    <svg class="h-6 w-6 text-red-500" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6" />
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                    </svg>
+                                </button>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </ul>
+<div *ngIf="editProductBoolean" id="authentication-modal" tabindex="-1" [ngClass]="{hidden : false}" aria-hidden="true"
+    class="fixed z-1 top-0 right-0 hidden w-full  overflow-x-hidden overflow-y-auto md:inset-0  max-h-full flex items-center justify-center md:items-start  md:justify-end">
+
+    <div class="entrada-derecha relative w-[95vw] max-w-md max-h-full ">
+        <!-- Modal content -->
+        <div class="relative z-50 bg-white rounded-sm shadow   h-[100vh] p-1">
+            <!-- TITULOS -->
+            <div class="global-center-between mt-5 lg:mt-2">
+                <button type="button" (click)="cancelEdit()"
+                    class="text-white bg-blue-900 hover:bg-gray-200 hover:text-gray-900 rounded-sm text-sm p-1.5"
+                    data-modal-hide="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+
+                <!-- <p class="text-blue-900 text-sm font-semibold">ADJUNTAR CV</p> -->
+                <p class="pt-3 font-bold text-center text-sm text-blue_global leading-4 capitalize">EDITAR PRODUCTO</p>
+                <div></div>
+            </div>
+
+
+
+            <div>
+                <!-- <p class="text-center text-blue-900 text-sm pt-2"> Tus datos</p> -->
+
+                <form [formGroup]="addDetailProduct" class=" p-4">
+                    <div class="">
+                        <div class="row m-0 p-0">
+                            <div class="col-lg-10 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">SKU</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="sku" required>
+                            </div>
+                            <div class="col-lg-2 my-1 2xl:my-2 p-0">
+                                <label [class]="inputNormalLabel">-</label>
+                                <button (click)="searchSKU()"
+                                    class="bg-blue_global h-8 hover:bg-white text-white hover:text-blue_global border border-blue_global  text-xs px-2 font-bold  rounded">
+                                    BUSCAR
+                                </button>
+                            </div>
+
+                            <div class="col-lg-12 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Descripción</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="descripcion" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Solphed Cliente</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="solphed_cliente" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Cantidad</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="cantidad" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Precio Venta</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="precio_venta" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Precio Compra</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="precio_compra" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel"> Precio Original </label>
+                                <input type="text" [class]="inputNormalIn" formControlName="precio_original" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel"> Marca Original</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="marca_original" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel"> Marca Alternativa</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="marca_alternativa" required>
+                            </div>
+                            <div class="col-lg-10 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">Ruc Proveedor</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="ruc_proveedor" required>
+                            </div>
+                            <div class="col-lg-2 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel">-</label>
+                                <button (click)="searchProveedorByRUC()"
+                                    class="bg-blue_global h-8 hover:bg-white text-white hover:text-blue_global border border-blue_global  text-xs px-2 font-bold  rounded">
+                                    BUSCAR
+                                </button>
+                            </div>
+                            <div class="col-lg-12 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel"> Proveedor</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="proveedor" required>
+                            </div>
+                            <div class="col-lg-6 my-1 2xl:my-2 px-[1%]">
+                                <label [class]="inputNormalLabel"> Lead Time</label>
+                                <input type="text" [class]="inputNormalIn" formControlName="lead_time" required>
+                            </div>
+
+                        </div>
+
+                        <div class="global-center py-2">
+
+                            <button (click)="updateProduct(addDetailProduct.value)"
+                                class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
+                                EDITAR PRODUCTO
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

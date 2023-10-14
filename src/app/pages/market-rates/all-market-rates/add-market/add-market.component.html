@@ -31,6 +31,10 @@
                 
                 <div class="col-lg-12 my-1 2xl:my-2">
                     <label [class]="inputNormalLabel">Fecha de Solicitud</label>
+                    <input type="text" [class]="inputNormalIn" formControlName="fecha_solicitud" required>
+                </div>
+                <div class="col-lg-12 my-1 2xl:my-2">
+                    <label [class]="inputNormalLabel">Fecha de envío</label>
                     <input type="text" [class]="inputNormalIn" formControlName="fecha_envio" required>
                 </div>
                 <div class="col-lg-12 my-1 2xl:my-2">
@@ -172,7 +176,7 @@
     </form>
 
     <!-- CARGAR ARCHIVO -->
-    <div *ngIf="addCSVProduct" class="col-md-4 py-1">
+    <div *ngIf="addCSVProduct" class="col-md-6 py-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll  bg-white">
             <div class="global-center-between mt-5 lg:mt-2">
                 <button type="button" (click)="cancelAdd()"
@@ -242,7 +246,7 @@
                 </div>
             </div>
         </div>
-
+        <br>
     </div>
 
     
@@ -313,9 +317,7 @@
 </h1>
 <br>
 <div *ngIf="cotizazion.productos.length != 0" class="py-1">
-
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
-
         <table class="w-full text-sm text-left text-gray-500   ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50    ">
                 <tr>
