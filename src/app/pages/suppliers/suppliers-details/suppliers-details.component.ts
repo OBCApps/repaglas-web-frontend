@@ -36,7 +36,7 @@ export class SuppliersDetailsComponent extends GeneralFunctions {
       contacto:  [{ value: '', disabled: true }],
       departamento:  [{ value: '', disabled: true }],
       direccion:  [{ value: '', disabled: true }],
-      DirreccionDeRecojo:  [{ value: '', disabled: true }],
+      direccionRecojo:  [{ value: '', disabled: true }],
       termino_pago:  [{ value: '', disabled: true }],
     });
   }
@@ -70,7 +70,7 @@ export class SuppliersDetailsComponent extends GeneralFunctions {
             contacto: this.Supplier.Contacto,
             departamento: this.Supplier.Departamento,
             direccion: this.Supplier.Direccion,
-            DireccionDeRecojo: this.Supplier.DireccionDeRecojo,
+            direccionRecojo: this.Supplier.DireccionDeRecojo,
             termino_pago: this.Supplier.TerminoDePago,
           });
         } else {

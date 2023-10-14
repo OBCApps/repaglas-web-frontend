@@ -9,5 +9,5 @@ export class DtoSuppliersModel{
     Departamento: string
     Direccion: string
     TerminoDePago: string
-    DireccionDeRecojo : string    
+    DireccionDeRecojo : string 
 }
