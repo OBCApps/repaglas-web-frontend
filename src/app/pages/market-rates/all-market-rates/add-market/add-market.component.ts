@@ -281,9 +281,11 @@ export class AddMarketComponent extends GeneralFunctions {
     tamanorealarchivo: '',
     tipoarchivo: '',
   };
+
   change() {
     this.verDetalleArchivo = false
   }
+  
   labelCV: any;
   cvSource: any;
   acceptextensions: any = "AFASDF"
