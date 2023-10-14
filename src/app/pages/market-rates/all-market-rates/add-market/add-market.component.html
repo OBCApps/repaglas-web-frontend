@@ -28,7 +28,7 @@
                     <label [class]="inputNormalLabel">Cliente</label>
                     <input type="text" [class]="inputNormalIn" formControlName="cliente" required>
                 </div>
-                
+
                 <div class="col-lg-12 my-1 2xl:my-2">
                     <label [class]="inputNormalLabel">Fecha de Solicitud</label>
                     <input type="text" [class]="inputNormalIn" formControlName="fecha_solicitud" required>
@@ -94,7 +94,7 @@
                 </button>
             </div>
 
-            <div class="row m-0 p-0">           
+            <div class="row m-0 p-0">
                 <div class="col-lg-4 my-1 2xl:my-2 px-[1%]">
                     <label [class]="inputNormalLabel">SKU</label>
                     <input type="text" [class]="inputNormalIn" formControlName="sku" required>
@@ -158,15 +158,15 @@
                     <label [class]="inputNormalLabel"> Lead Time</label>
                     <input type="text" [class]="inputNormalIn" formControlName="lead_time" required>
                 </div>
-        
+
             </div>
 
             <div class="global-center py-2">
-                <button *ngIf="!updateBool"  (click)="addProduct(addDetailProduct.value)"
+                <button *ngIf="!updateBool" (click)="addProduct(addDetailProduct.value)"
                     class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
                     AGREGAR PRODUCTO
                 </button>
-                <button *ngIf="updateBool"  (click)="updateProduct(addDetailProduct.value)"
+                <button *ngIf="updateBool" (click)="updateProduct(addDetailProduct.value)"
                     class="text-white font-medium border border-green_global hover:text-green_global hover:bg-white py-2 px-4 text-sm bg-green_global">
                     EDITAR PRODUCTO
                 </button>
@@ -245,11 +245,12 @@
                     </div>
                 </div>
             </div>
+            <br>
         </div>
         <br>
     </div>
 
-    
+
     <div *ngIf="ListProductBoolean" class="col-md-8 py-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
 
@@ -336,7 +337,7 @@
 
                     <th scope="col" class="px-6 py-3">
                         Precio Venta
-                    </th>                    
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Precio Original
                     </th>
@@ -346,7 +347,7 @@
                     <th scope="col" class="px-6 py-3">
                         Marca Original
                     </th>
-                  
+
                     <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
@@ -355,7 +356,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of cotizazion.productos" class="bg-white cursor-pointer border-b  hover:bg-gray-50  ">
+                <tr *ngFor="let item of cotizazion.productos"
+                    class="bg-white cursor-pointer border-b  hover:bg-gray-50  ">
 
                     <td class="px-6 py-4">
                         <div class="text-base font-semibold">{{item.sku}}</div>
@@ -370,10 +372,10 @@
                         {{item.cantidad}}
                     </td>
                     <td class="px-6 py-4">
-                       $ {{item.precio_venta}}
+                        $ {{item.precio_venta}}
                     </td>
                     <td class="px-6 py-4">
-                       $ {{item.precio_original}}
+                        $ {{item.precio_original}}
                     </td>
 
                     <td class="px-6 py-4">
@@ -382,9 +384,13 @@
                     <td class="px-6 py-4">
                         {{item.marca_original}}
                     </td>
-                  
+
                     <td scope="col" class="px-6 py-3 global-center">
-                        <svg (click)="editProduct(item)" class="h-10 w-10 text-blue-500 px-2" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg>
+                        <svg (click)="editProduct(item)" class="h-10 w-10 text-blue-500 px-2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+                        </svg>
                         <svg (click)="deleteProduct(item)" class="h-6 w-6 text-red-500" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="3 6 5 6 21 6" />

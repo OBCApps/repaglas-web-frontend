@@ -61,7 +61,7 @@ export class LoginComponent extends GeneralFunctions {
         this.loadingService.hide();
         console.log(response);
         
-          sessionStorage.setItem('AuthorizacionPortalRepaglas', JSON.stringify(response.detail));
+          sessionStorage.setItem('AuthorizacionPortalRepaglas', JSON.stringify(response.detail.usuario));
           this.succes_function("Credenciales validados");
           this.router.navigate(['/home'])
         

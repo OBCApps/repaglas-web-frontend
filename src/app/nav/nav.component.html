@@ -32,16 +32,15 @@
 
                     <li class=" hidden md:block">
                         <div class="global-center text-white cursor-grabbing">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
-                                class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                <path fill-rule="evenodd"
-                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
                             </svg>
                             <!-- <svg class="h-8 w-8"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                               </svg> -->
-                            <span class="px-3"> MICHAEL </span>
+                            <span class="px-3 font-semibold"> {{userLOCAL.Usuario | uppercase}} </span>
                         </div>
                     </li>
 
@@ -53,16 +52,15 @@
 </div>
 
 <div class="flex m-0 min-h-[90vh] ">
-    
+
     <div class="hidden md:block md:w-[20vw] sombreado">
         <ul>
-            <li  *ngFor="let item of options" 
-            class="hover:bg-grey_global cursor-pointer"
-            [ngClass]="{'bg-grey_global' : splitHref === item.splitHref}">
+            <li *ngFor="let item of options" class="hover:bg-grey_global cursor-pointer"
+                [ngClass]="{'bg-grey_global' : splitHref === item.splitHref}">
                 <a [routerLink]="item.splitHref">
                     <div class="row m-0 h-20 ">
                         <div class="col-4  global-end text-grey_dark_global">
-                            <div  [innerHTML]="sanitizer.bypassSecurityTrustHtml(item.icon)"></div>
+                            <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(item.icon)"></div>
                         </div>
                         <div class="col-8 global-center-start">
 

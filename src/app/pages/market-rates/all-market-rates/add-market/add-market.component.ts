@@ -9,6 +9,7 @@ import { ClientsService } from 'src/app/pages/clients/clients.service';
 import Swal from 'sweetalert2';
 import { DtoAddCotizacionModel } from '../../models/dtoAddCotizacion';
 import { SuppliersService } from 'src/app/pages/suppliers/suppliers.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-add-market',
@@ -173,7 +174,7 @@ export class AddMarketComponent extends GeneralFunctions {
       data => {
         this.loadingService.hide();
         console.log(data);
-
+        this.cotizazion = new DtoAddCotizacionModel();
         this.succes_function("Cotizacion registrada");
         this.register.reset()
         this.addDetailProduct.reset()
@@ -287,17 +288,16 @@ export class AddMarketComponent extends GeneralFunctions {
   cvSource: any;
   acceptextensions: any = "AFASDF"
   cargarCV(event: any) {
+    this.loadingService.show()
     console.log("caRGAR CV", event);
 
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.labelCV = event.target.files[0].name;
       this.cvSource = file;
-      if (event.target.files[0].type !== "application/csv") {
-        this.showerrorAlert("El formato debe ser pdf")
-        /* this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Lo sentimos el formato del archivo debe ser PDF' });
-        this.postulacionForms.patchValue({ cv: '' }); */
-        //this.labelCV = "Selecciona un archivo";
+      if (event.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+        this.showerrorAlert("El formato debe ser Xslx")
+        this.loadingService.hide()
       } else {
         this.verDetalleArchivo = true;
         console.log("Archivo: ", event.target.files[0]);
@@ -306,7 +306,34 @@ export class AddMarketComponent extends GeneralFunctions {
         this.selecteddocumento.fechaadjuntomostrar = event.target.files[0].lastModifiedDate;
         this.selecteddocumento.tamanorealarchivo = event.target.files[0].size / (1024 * 1024);
         this.selecteddocumento.tipoarchivo = event.target.files[0].type;
+
+        if (file) {
+          this.readFile(file);
+        }
+
+        
       }
     }
+  }
+  readFile(file: File) {
+    const reader: FileReader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const bstr: string = e.target.result;
+      const workbook: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+      const firstSheetName: string = workbook.SheetNames[0];
+      const worksheet: XLSX.WorkSheet = workbook.Sheets[firstSheetName];
+
+      // Parse the data and use it as needed
+      const jsonData: any[] = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+      console.log("jsonData", jsonData);
+      this.loadingService.hide()
+      this.cotizazion.productos = jsonData
+      this.addCSVProduct = false
+      // You can now use the jsonData array as needed, for example, send it to a service or display it in your component
+    };
+
+    reader.readAsBinaryString(file);
   }
 }
