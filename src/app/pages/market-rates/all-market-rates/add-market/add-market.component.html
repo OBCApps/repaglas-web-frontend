@@ -1,8 +1,8 @@
 <!-- (ngSubmit)="registerMarket(register.value)" -->
 <br>
-<div class="row m-0 p-0">
-    <form class="col-md-4 py-1" [formGroup]="register">
-        <div class="min-h-[40vh]  bg-white rounded-lg hover:shadow-md  border">
+<div class="grid grid-cols-3 gap-4 m-0 p-0">
+    <form class=" py-1" [formGroup]="register">
+        <div class="min-h-[40vh] m-1 p-2 bg-white rounded-lg hover:shadow-md  border">
 
             <div class="global-center-between p-2 border-b">
                 <h1 class="font-semibold ">
@@ -72,7 +72,7 @@
         </div>
     </form>
     <!-- INGREAR MANUALMENTE -->
-    <form *ngIf="addProductBoolean" [formGroup]="addDetailProduct" class="col-md-8 py-1">
+    <form *ngIf="addProductBoolean" [formGroup]="addDetailProduct" class="col-span-2 py-1">
         <div class="min-h-[40vh]  bg-white rounded-lg hover:shadow-md  border">
 
             <div class="global-center-between mt-5 lg:mt-2">
@@ -176,7 +176,7 @@
     </form>
 
     <!-- CARGAR ARCHIVO -->
-    <div *ngIf="addCSVProduct" class="col-md-6 py-1">
+    <div *ngIf="addCSVProduct" class="col-span-2 py-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll  bg-white">
             <div class="global-center-between mt-5 lg:mt-2">
                 <button type="button" (click)="cancelAdd()"
@@ -251,7 +251,7 @@
     </div>
 
 
-    <div *ngIf="ListProductBoolean" class="col-md-8 py-1">
+    <div *ngIf="ListProductBoolean" class="col-span-2 py-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg lg:mx-5 max-h-[70vh] global-scroll">
 
             <table class="w-full text-sm text-left text-gray-500   ">

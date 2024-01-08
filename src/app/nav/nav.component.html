@@ -1,7 +1,7 @@
 <div class="content ">
-    <div class=" sombreado">
-        <nav class="row m-0 md:px-3 lg:h-[8vh]  border-b border-white global-center">
-            <div class="col-md-6 global-center-between pt-2">
+    <div class="sombreado">
+        <nav class="grid grid-cols-2 gap-4 m-0 md:px-3 lg:h-[8vh]  border-b border-white global-center">
+            <div class="global-center-between pt-2">
                 <div>
                     <h1 class=" font-semibold mx-2 text-white">
                         <svg class="h-14 w-14" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-white md:global-end py-2">
+            <div class="text-white md:global-end py-2">
                 <ul class="text-xs lg:text-sm global-center-between md:justify-end ">
 
                     <li class=" hidden md:block">
@@ -36,10 +36,7 @@
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
-                            </svg>
-                            <!-- <svg class="h-8 w-8"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                              </svg> -->
+                            </svg>                            
                             <span class="px-3 font-semibold"> {{userLOCAL.Usuario | uppercase}} </span>
                         </div>
                     </li>
@@ -58,12 +55,11 @@
             <li *ngFor="let item of options" class="hover:bg-grey_global cursor-pointer"
                 [ngClass]="{'bg-grey_global' : splitHref === item.splitHref}">
                 <a [routerLink]="item.splitHref">
-                    <div class="row m-0 h-20 ">
-                        <div class="col-4  global-end text-grey_dark_global">
+                    <div class="grid grid-cols-3 gap-4 m-0 h-20 ">
+                        <div class="global-end text-grey_dark_global">
                             <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(item.icon)"></div>
                         </div>
-                        <div class="col-8 global-center-start">
-
+                        <div class="col-span-2 global-center-start">
                             <span class="font-semibold text-grey_dark_global "> {{item.name}} </span>
                         </div>
                     </div>

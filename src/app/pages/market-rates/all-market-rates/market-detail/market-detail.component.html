@@ -1,30 +1,27 @@
 <div class="mx-3 my-5">
 
-    <div class="bg-white row m-0 w-full sombreado text-gray-500 text-sm ">
-        <div class="col-lg-3  ">
-            <div class="row m-0 py-2">
-                <div class="col-12 global-center">
+    <div class="bg-white grid grid-cols-3 gap-4 m-0 w-full sombreado text-gray-500 text-sm ">
+        <div class="">
+            <div class="grid grid-cols-3 gap-4 m-0 py-2">
+                <div class="col-span-3 global-center">
                     <img src="./assets/images/repaglas_1.png" class="rounded-full h-20 border ">
                 </div>
-                <div class="col-12 text-center  ">
-                    <div class="global-end py-1">
+                <div class="col-span-3 text-center  ">
+                    <div class="global-center py-1">
                         <b class="px-2">RUC: </b>
                         <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.ruc"
                             [disabled]="!modificarBoolean" required>
                     </div>
 
-                    <div class="global-end py-1">
+                    <div class="global-center py-1">
                         <b class="px-2">Cliente: </b>
                         <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.cliente"
                             [disabled]="!modificarBoolean" required>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-        <div class="col-5 text-center global-center font-normal">
+        <div class=" text-center global-center font-normal">
             <div>
                 <div class="global-end py-1">
                     <b class="px-2">Estado: </b>
@@ -37,7 +34,7 @@
                         [disabled]="!modificarBoolean" required>
                 </div>
                 <div class="global-end py-1">
-                    <b class="px-2">Fecha de Envio: </b>f
+                    <b class="px-2">Fecha de Envio: </b>
                     <input type="text" [class]="inputCabeceraIn" [(ngModel)]="MarketRates.fecha_envio"
                         [disabled]="!modificarBoolean" required>
                 </div>
@@ -46,7 +43,7 @@
 
         </div>
 
-        <div class="col-4 text-center global-center font-normal">
+        <div class=" text-center global-center font-normal">
             <div>
                 <div class="global-end py-1">
                     <b class="px-2">Notas: </b>
@@ -62,8 +59,8 @@
 
             </div>
         </div>
-        <br>
-        <div class="col-12 global-end">
+      
+        <div class="col-span-3 global-end">
 
             <div (click)="changeTypeSolicitud('info')"
                 class="px-3 global-center font-normal cursor-pointer py-1 hover:bg-gray-100 text-center leading-4"

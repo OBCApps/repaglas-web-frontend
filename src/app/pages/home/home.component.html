@@ -1,5 +1,5 @@
-<div class="row m-0 p-2">
-    <div class="col-lg-3 p-1">
+<div class="grid grid-cols-4 gap-4 m-0 p-2">
+    <div class="p-1">
         <div class="bg-white text-xs p-1">
             <div class="global-center-between">
                 <span class="text-grey_dark_global">Solicitudes de Cotización</span>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-1">
+    <div class="p-1">
         <div class="bg-white text-xs p-1">
             <div class="global-center-between">
                 <span class="text-grey_dark_global">Solicitudes de Ventas</span>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-1">
+    <div class="p-1">
         <div class="bg-white text-xs p-1">
             <div class="global-center-between">
                 <span class="text-grey_dark_global">Pagos</span>
@@ -104,7 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 p-1">
+    <div class="p-1">
         <div class="bg-white text-xs p-1">
             <div class="global-center-between">
                 <span class="text-grey_dark_global"> Rendimiento </span>
@@ -141,8 +141,8 @@
     </div>
 </div>
 
-<div class="row m-0 p-2 ">
-    <div class="col-12 global-center-start bg-white">
+<div class="grid grid-cols-3  m-0 p-2 ">
+    <div class="col-span-3 global-center-start bg-white">
         <div (click)="changeTypeSolicitud('sales')"
             class="px-3 global-center font-normal cursor-pointer py-1 hover:text-green_global text-center leading-4 {{type_solicitud == 'sales' ? 'text-green_global' : ''}}">
 
@@ -165,15 +165,15 @@
             <span>Cotizaciones</span>
         </div>
     </div>
-    <div [ngSwitch]="type_solicitud" class="pt-1 bg-white">
+    <div [ngSwitch]="type_solicitud" class="col-span-3 pt-1 bg-white">
         <div *ngSwitchCase='"sales"'>
-            <div class="row m-0">
-                <div class="col-lg-8">
+            <div class="grid grid-cols-3 m-0">
+                <div class="col-span-2">
                     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
                         [legend]="barChartLegend">
                     </canvas>
                 </div>
-                <div class="col-lg-4 ">
+                <div class="">
                     <div class="text-center"> 
                         <span class="font-semibold">Ranking de Ventas</span>
                     </div>
@@ -190,13 +190,13 @@
         </div>
 
         <div *ngSwitchCase='"market-rates"'>
-            <div class="row m-0">
-                <div class="col-lg-8">
+            <div class="grid grid-cols-3 m-0">
+                <div class="col-span-2">
                     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
                         [legend]="barChartLegend">
                     </canvas>
                 </div>
-                <div class="col-lg-4">
+                <div class="">
                     <div class="text-center"> 
                         <span class="font-semibold">Ranking de Cotizaciones</span>
                     </div>
